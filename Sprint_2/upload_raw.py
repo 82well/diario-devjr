@@ -38,20 +38,15 @@ def upload_particionado(caminho_local: str, nome_arquivo: str, data: datetime = 
     return chave_s3
 
 def simular_dados_historicos():
-    """
-    Simula uploads de dias anteriores para demonstrar o particionamento.
-    Útil para mostrar no portfólio que você entende o conceito.
-    """
     from datetime import timedelta
 
     datas = [
-        datetime(2025, 6, 7),
-        datetime(2025, 6, 8),
-        datetime(2025, 6, 9),
+        datetime(2026, 6, 7),
+        datetime(2026, 6, 8),
+        datetime(2026, 6, 9),
     ]
 
     for data in datas:
-        # Gera um CSV simples para cada data
         conteudo = gerar_csv_data(data)
         caminho_temp = f"dados/temperatura_{data.strftime('%Y%m%d')}.csv"
 
