@@ -1,0 +1,28 @@
+@"
+# Ambientes virtuais
+venv/
+*/venv/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Credenciais
+.env
+*.env
+**/.env
+
+# Arquivos de anotações
+*.txt
+
+# CSVs gerados pelos scripts
+Sprint_2/dados/
+
+# VS Code
+.vscode/
+
+# Sistema
+Thumbs.db
+.DS_Store
+"@ | Out-File -FilePath .gitignore -Encoding utf8
