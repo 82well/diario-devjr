@@ -8,7 +8,73 @@ on:
 
 jobs:
   testes:
+    runs-on: ubuntu-latestname: CI/CD — Testes e Deploy Lambda
+
+on:
+  push:
+    branches: [ main, sprint03-deploy-lambda ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  testes:
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r Sprint_3/requirements.txt
+          pip install pytest httpx moto
+
+      - name: Rodar testes
+        run: |
+          cd Sprint_3
+          pytest tests/ -v
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: testes
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/sprint03-deploy-lambda'
+
+    steps:
+      - name: Checkout do codigo
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Empacotar API para Lambda
+        run: |
+          pip install fastapi mangum boto3 python-dotenv pydantic pydantic-core --target Sprint_3/package/ --only-binary=:all:
+          cp Sprint_3/main.py Sprint_3/package/
+          cd Sprint_3/package
+          zip -r ../../sprint03-api.zip .
+
+      - name: Configurar credenciais AWS
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Deploy no Lambda
+        run: |
+          aws s3 cp sprint03-api.zip s3://sprint02-datalake-wellington/deploy/sprint03-api.zip
+          aws lambda update-function-code \
+            --function-name sprint03-api \
+            --s3-bucket sprint02-datalake-wellington \
+            --s3-key deploy/sprint03-api.zip
 
     steps:
       - name: Checkout do codigo
