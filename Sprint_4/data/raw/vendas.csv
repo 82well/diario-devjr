@@ -1,0 +1,6 @@
+id_pedido,data,cliente,estado,produto,valor
+1,2026-01-10,Joao,DF,Notebook,3500
+2,2026-01-11,Maria,SP,Mouse,150
+3,2026-01-12,Carlos,RJ,Teclado,300
+4,2026-01-13,Ana,SP,Monitor,1200
+5,2026-01-14,Pedro,MG,Cadeira,800

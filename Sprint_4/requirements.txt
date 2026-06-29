@@ -1,0 +1,6 @@
+pyspark
+pandas
+pyarrow
+boto3
+pytest
+jupyter
