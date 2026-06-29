@@ -21,6 +21,14 @@ Sprint_2/dados/
 # VS Code
 .vscode/
 
+# Ambiente Virtual
+venv/
+.ipynb_checkpoints/
+
+#AWS
+aws/
+awscliv2.zip/
+
 # Sistema
 Thumbs.db
 .DS_Store
