@@ -237,6 +237,32 @@ AWS_SECRET_ACCESS_KEY=sua_chave_secreta_aqui
 AWS_REGION=us-east-1
 DYNAMODB_TABLE=dados-sprint01
 ```
+---
+
+## Competências Técnicas Demonstradas
+
+Backend:
+- APIs REST
+- FastAPI
+- Testes automatizados
+
+Cloud:
+- AWS Lambda
+- S3
+- IAM
+- API Gateway
+
+Data Engineering:
+- Data Lake
+- ETL
+- Parquet
+- Athena
+- Glue
+
+DevOps:
+- GitHub Actions
+- CI/CD
+- Secrets Management
 
 ---
 
