@@ -14,14 +14,15 @@
 
 ## Sobre o projeto
 
-Este repositório documenta minha jornada de recolocação como Desenvolvedor Back-end Jr
-em transição para Engenharia de Dados. Em vez de estudar de forma isolada, organizei
-o aprendizado como acontece em equipes ágeis reais: com objetivos claros, entregas
-concretas e evolução sprint a sprint.
+Em vez de estudar tecnologias de forma isolada, organizei o aprendizado em sprints, seguindo uma abordagem próxima de equipes reais:
 
-Cada sprint gera um projeto funcional, um README técnico e uma retrospectiva pública
-no LinkedIn — transformando estudo em portfólio real.
+objetivos definidos;
+entregas técnicas;
+documentação;
+resolução de problemas;
+retrospectivas de aprendizado.
 
+Cada sprint representa uma evolução prática do projeto, transformando estudo em portfólio técnico.
 ---
 
 ## Sprints
@@ -31,7 +32,7 @@ no LinkedIn — transformando estudo em portfólio real.
 | Sprint 01 | API REST de ingestão de dados | FastAPI · DynamoDB · pytest | ✅ Concluída |
 | Sprint 02 | Pipeline de dados serverless | S3 · Glue · Athena · PySpark | ✅ Concluída |
 | Sprint 03 | Deploy Lambda + CI/CD | Lambda · API Gateway · GitHub Actions | ✅ Concluída |
-| Sprint 04 | Processamento distribuído | Spark · Olist · QuickSight | 🔜 Em breve |
+| Sprint 04 | Processamento distribuído | Spark · PySpark · AWS S3 · Olist | 🚧 Em andamento |
 
 ---
 
@@ -143,6 +144,16 @@ ORDER BY media_valor DESC;
 - Custo total da sprint: **~R$ 1,00**
 
 ---
+
+### Conceitos aplicados
+- Data Lake
+- Separação entre dados brutos e tratados
+- Formato Parquet
+- Consultas SQL sobre dados no S3
+- IAM e controle de acesso
+
+---
+
 
 ## Sprint 03 — Deploy Lambda + CI/CD
 
@@ -264,6 +275,54 @@ DevOps:
 - CI/CD
 - Secrets Management
 
+
+---
+
+
+## Sprint 04 — Processamento Distribuído com Apache Spark
+
+Objetivo
+
+Evoluir o Data Lake criado anteriormente adicionando processamento distribuído utilizando Apache Spark e dados reais do dataset Olist.
+
+## Arquitetura planejada
+   Dataset Olist CSV
+         ↓
+   PySpark DataFrame
+         ↓
+   Transformações
+         ↓
+   Parquet
+         ↓
+   Amazon S3
+         ↓
+   Athena / QuickSight
+
+## Ambiente configurado
+- Windows 10 + WSL2
+- Ubuntu 24.04 LTS
+- Python 3.11
+- Apache Spark
+- PySpark
+- AWS CLI
+- IAM com política de menor privilégio
+- Amazon S3
+- Checkpoint inicial
+
+✅ Spark executando localmente
+✅ Criação e transformação de DataFrames
+✅ Ambiente Python configurado
+✅ AWS CLI autenticado
+✅ Comunicação com bucket S3 validada
+
+## Próximas entregas:
+
+ - Processamento do dataset Olist
+ - Transformações utilizando Spark
+ - Geração de arquivos Parquet
+ - Upload para S3
+ - Integração com Athena
+
 ---
 
 ## Roadmap
@@ -291,7 +350,9 @@ DevOps:
 
 ## Autor
 
-**Wellington** — Dev Jr em transição para Engenharia de Dados
+**Wellington** — Dev Jr em evolução para Engenharia de Dados AWS.
+
+Construindo conhecimento através de projetos práticos, documentando erros, soluções e aprendizados.
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-conectar-0A66C2?style=flat-square&logo=linkedin)](https://linkedin.com/in/SEU_PERFIL)
 [![GitHub](https://img.shields.io/badge/GitHub-82well-181717?style=flat-square&logo=github)](https://github.com/82well)
