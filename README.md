@@ -325,6 +325,69 @@ Evoluir o Data Lake criado anteriormente adicionando processamento distribuído 
 
 ---
 
+## Primeiro teste Spark local
+
+Antes de iniciar o processamento do dataset Olist, foi validado o ambiente
+local de processamento distribuído.
+
+Teste realizado:
+
+- Criação de SparkSession
+- Criação de DataFrame utilizando PySpark
+- Execução de operações Spark
+- Encerramento correto do SparkContext
+
+Exemplo de processamento:
+
+```python
+df = spark.createDataFrame(
+    [
+        ("Wellington", "DF", 1200),
+        ("Maria", "SP", 2500),
+        ("Carlos", "RJ", 1800)
+    ],
+    ["nome", "estado", "salario"]
+)
+
+df.show()
+
++----------+------+-------+
+|      nome|estado|salario|
++----------+------+-------+
+|Wellington|    DF|   1200|
+|     Maria|    SP|   2500|
+|    Carlos|    RJ|   1800|
++----------+------+-------+
+
+---
+
+
+---
+
+## Problemas encontrados
+
+### Spark Submit não disponível
+
+Durante a execução inicial foi identificado que o comando `spark-submit`
+não estava disponível globalmente.
+
+Análise:
+
+O PySpark estava instalado dentro do ambiente virtual Python, mas o Apache
+Spark standalone não estava configurado no PATH do sistema.
+
+Solução aplicada:
+
+Execução utilizando o ambiente Python com PySpark, validando a criação da
+SparkSession e processamento local antes da instalação standalone do Spark.
+
+Aprendizado:
+
+A instalação de uma biblioteca Python não significa necessariamente que
+todas as ferramentas de linha de comando do ecossistema estarão disponíveis.
+
+---
+
 ## Roadmap
 
 ```
