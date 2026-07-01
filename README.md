@@ -388,6 +388,29 @@ todas as ferramentas de linha de comando do ecossistema estarão disponíveis.
 
 ---
 
+## Primeiro pipeline Spark executado
+
+Dataset utilizado:
+Brazilian E-Commerce Public Dataset by Olist
+
+Processamento:
+
+CSV
+↓
+Spark DataFrame
+↓
+Filtro de pedidos entregues
+↓
+Parquet
+
+Resultado:
+
+- Registros carregados: 99.441
+- Pedidos entregues processados: 96.478
+- Formato de saída: Parquet
+
+---
+
 ## Roadmap
 
 ```

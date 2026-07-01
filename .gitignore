@@ -29,9 +29,22 @@ venv/
 aws/
 awscliv2.zip/
 
+# Dados de entrada
+**/data/raw/*.csv
+
+# Dados processados
+**/data/processed/
+
+# Dados brutos grandes
+**/data/raw/*.csv
+
 # Sistema
 Thumbs.db
 .DS_Store
+
+# Arquivos temporários do Windows
+*:Zone.Identifier
+
 "@ | Out-File -FilePath .gitignore -Encoding utf8
 
 AWS-Estudos.txt
