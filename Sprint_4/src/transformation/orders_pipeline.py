@@ -3,9 +3,23 @@ from pyspark.sql.functions import col
 
 
 def create_spark_session():
+
     return (
         SparkSession.builder
         .appName("OlistOrdersPipeline")
+        .config(
+            "spark.jars.packages",
+            "org.apache.hadoop:hadoop-aws:3.4.1,"
+            "com.amazonaws:aws-java-sdk-bundle:1.12.782"
+        )
+        .config(
+            "spark.hadoop.fs.s3a.aws.credentials.provider",
+            "com.amazonaws.auth.DefaultAWSCredentialsProviderChain"
+        )
+        .config(
+            "spark.hadoop.fs.s3a.impl",
+            "org.apache.hadoop.fs.s3a.S3AFileSystem"
+        )
         .getOrCreate()
     )
 
@@ -14,8 +28,9 @@ def main():
 
     spark = create_spark_session()
 
-    input_path = "data/raw/olist_orders_dataset.csv"
-    output_path = "data/processed/orders"
+    input_path = "s3a://sprint02-datalake-wellington/raw/olist_orders_dataset.csv"
+
+    output_path = "s3a://sprint02-datalake-wellington/curated/orders/"
 
     print("Lendo arquivo CSV...")
 

@@ -32,7 +32,7 @@ Cada sprint representa uma evolução prática do projeto, transformando estudo 
 | Sprint 01 | API REST de ingestão de dados | FastAPI · DynamoDB · pytest | ✅ Concluída |
 | Sprint 02 | Pipeline de dados serverless | S3 · Glue · Athena · PySpark | ✅ Concluída |
 | Sprint 03 | Deploy Lambda + CI/CD | Lambda · API Gateway · GitHub Actions | ✅ Concluída |
-| Sprint 04 | Processamento distribuído | Spark · PySpark · AWS S3 · Olist | 🚧 Em andamento |
+| Sprint 04 | Processamento distribuído | Spark · PySpark · AWS S3 · Olist | ✅ Concluída |
 
 ---
 
@@ -411,6 +411,57 @@ Resultado:
 
 ---
 
+## Sprint 4.1 — Integração Spark com AWS S3
+
+Pipeline:
+
+S3 Raw
+↓
+PySpark
+↓
+Transformação
+↓
+S3 Curated
+
+Tecnologias:
+
+- Apache Spark 4.1.2
+- PySpark
+- Hadoop AWS Connector
+- Amazon S3
+- Parquet
+
+Resultado:
+
+- 99.441 pedidos processados
+- 96.478 pedidos entregues
+- Dados convertidos para Parquet
+
+---
+
+## Problemas encontrados
+
+### Spark não reconhecia S3
+
+Erro:
+
+No FileSystem for scheme "s3"
+
+Causa:
+
+O Hadoop utiliza o conector S3A para comunicação com o Amazon S3.
+
+Solução:
+
+Alteração dos caminhos:
+
+s3://
+
+para:
+
+s3a://
+
+---
 ## Roadmap
 
 ```
