@@ -462,6 +462,134 @@ para:
 s3a://
 
 ---
+
+# 💰 Controle de Custos AWS (Estimativa)
+
+## Estratégia adotada
+
+Durante o desenvolvimento da Sprint 4, foi priorizada uma arquitetura de baixo custo, utilizando processamento local com PySpark e armazenamento dos dados no Amazon S3.
+
+A decisão foi tomada para evitar custos desnecessários com recursos computacionais provisionados continuamente, mantendo uma arquitetura próxima de cenários reais de Engenharia de Dados.
+
+Arquitetura utilizada:
+Computador local
+|
+| PySpark
+|
+↓
+Amazon S3
+|
+├── raw/
+│ └── Dados brutos CSV
+│
+└── curated/
+└── Dados tratados em Parquet
+
+
+---
+
+# Estimativa de custos AWS
+
+Os valores abaixo são estimativas considerando o volume atual da Sprint 4.
+
+## Amazon S3
+
+Uso:
+
+- Armazenamento do dataset Olist
+- Armazenamento dos arquivos Parquet tratados
+
+Volume aproximado:
+Dataset CSV: ~17 MB
+Parquet gerado: < 20 MB
+Volume total: < 50 MB
+
+---
+
+
+Estimativa:
+
+| Recurso | Estimativa |
+|---|---:|
+| Armazenamento S3 Standard | < US$ 0,01/mês |
+| Upload de arquivos (PUT) | Próximo de US$ 0 |
+| Leitura dos arquivos (GET) | Próximo de US$ 0 |
+
+Custo estimado:
+< US$ 0,10/mês
+
+
+---
+
+## AWS Glue
+
+Uso planejado:
+
+- Execução de jobs Spark gerenciados
+- Processamentos futuros no Data Lake
+
+Uso atual:
+N/A
+
+---
+
+
+Observação:
+
+O uso de Parquet reduz custos porque o Athena processa somente os dados necessários das colunas consultadas.
+
+---
+
+## Amazon EC2 / EMR
+
+Uso:
+N/A
+
+
+Motivo:
+
+O processamento Spark está sendo executado localmente.
+
+Custo atual:
+
+N/A
+
+---
+
+
+---
+
+# Resumo dos custos atuais
+
+| Serviço AWS | Uso | Custo estimado |
+|---|---|---:|
+| Amazon S3 | Armazenamento Data Lake | < US$ 0,01/mês |
+| AWS Glue | Não utilizado | US$ 0 |
+| Amazon Athena | Não utilizado | US$ 0 |
+| EC2/EMR | Não utilizado | US$ 0 |
+
+## Custo mensal estimado da Sprint 4:
+Menor que US$ 0,10/mês
+
+
+---
+
+# Decisões de arquitetura e custo
+
+Principais decisões tomadas:
+
+✅ Utilizar processamento local com PySpark durante desenvolvimento
+
+✅ Utilizar S3 como camada de armazenamento do Data Lake
+
+✅ Utilizar formato Parquet para reduzir volume de dados e custo de consultas
+
+✅ Evitar recursos computacionais provisionados sem necessidade
+
+Essa abordagem permite desenvolver e validar pipelines de dados reais mantendo o ambiente econômico e próximo de boas práticas utilizadas em Engenharia de Dados.
+
+---
+
 ## Roadmap
 
 ```
